@@ -1,0 +1,29 @@
+{% extends "structure.html" %}
+
+{% block content %}
+<main>
+    <section class="home-content">
+        <div class="container">
+            <div class="content-title d-flex justify-content-between">
+                <h1>Bem vindo(a)!</h1>
+            </div>
+            <div class="content-bg">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="text-center p-2 d-flex align-items-center justify-content-center shadow-lg gap-1 flex-column rounded-3" style="background-image: url(/images/bg.webp); background-position: center 20%; background-size: cover; background-repeat: no-repeat;">
+                            <h1 class="text-light">Bônus na Compra de Moedas!</h1>
+                            <a href="/shop/coin" class="btn btn-danger btn-lg">LOJA</a>
+                        </div>                
+                    </div>
+                    <div class="col-md-3">
+                        {% include '/my-account-menu.html' %}             
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
+{% block js %}
+{% include '/custom-js.html' %}
+{% endblock %}

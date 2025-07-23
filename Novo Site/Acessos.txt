@@ -1,0 +1,11 @@
+Site Atual: http://www.metin2savior.com
+
+Usuário MYSQL/NAVICAT: Tabelas integradas ao site
+HOST:151.243.218.165
+PORT:3306
+USER:website_dev
+senha:savior@2025
+
+
+
+- Mudar o Layout do site atual mantendo as funcionalidades

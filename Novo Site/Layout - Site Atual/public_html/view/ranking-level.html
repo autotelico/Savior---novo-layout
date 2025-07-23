@@ -1,0 +1,61 @@
+{% extends "structure.html" %}
+
+{% block content %}
+<main>
+    <section class="home-content">
+        <div class="container">
+            <div class="content-title">
+                <h1>Player Ranking</h1>
+            </div>
+            <div class="content-bg">
+                <div class="d-flex justify-content-center">
+                    <a href="/guild-ranking" class="btn btn-primary mb-3">Guild Ranking</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th class="ranking-class">Class</th>
+                            <th>Name</th>
+                            <th>Level</th>
+                            <th class="ranking-empire">Empire</th>
+                            <th class="ranking-exp">EXP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key, player in records %}
+                        <tr>
+                            <td>{{offset + (key + 1)}}</td>
+                            <td class="ranking-class">{{getClassImg(player.job)|raw}}</td>
+                            <td>{{player.name}}</td>
+                            <td>{{player.level}}</td>
+                            <td class="ranking-empire">{{getEmpireFlag(player.empire)|raw}}</td>
+                            <td class="ranking-exp">{{player.exp}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center d-none">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination mt-5">
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "structure.html" %}
+
+{% block content %}
+<main>
+    <section class="home-content">
+        <div class="container">
+            <div class="content-title d-flex justify-content-between">
+                <h1>Loja de Moedas</h1>
+            </div>
+            <div class="content-bg">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="d-flex flex-column">
+                            {% for coinPack in coinsPack %}
+                            <div class="d-flex align-items-center justify-content-md-between justify-content-center bg-darker p-3 ps-lg-5 pe-lg-5 rounded flex-wrap gap-3 mb-3 border border-dark">
+                                <div class="col-12 col-md-3 d-flex flex-column align-items-center">
+                                    <span class="text-warning fs-2 fw-bold">
+                                    {{coinPack.CoinsAmount|number_format('0', '', '.')}}</span>
+                                    <span class="fs-6 text-secondary">Moedas Cash</span>
+                                    {% if coinPack.getDragonCoinsAmount() > 0 %}
+                                    <span class="fs-6 text-danger">+ Pontos</span>
+                                    {% endif %}
+                                </div>
+                                <div class="border p-2 border-dark rounded col-12 col-md-3 text-center">
+                                    <span class="fs-4 text-light">R${{coinPack.Price|number_format(2, ',', '.')}}</span>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <a href="coin/checkout/{{coinPack.ItemLink}}" class="btn btn-primary btn-lg">Comprar</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        {% include '/my-account-menu.html' %}                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}
+{% block js %}
+{% include '/custom-js.html' %}
+{% endblock %}

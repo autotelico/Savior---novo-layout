@@ -1,0 +1,72 @@
+{% extends "admin/structure.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="/css/sweetalert2.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Pedido - {{order.DisplayID}}</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6 d-none">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Starter Page</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <div class="bg-dark rounded p-4 col-6 mx-auto">
+                <h4>Detalhes do Pedido</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Login:</b> {{order.login}}</li>
+                    <li class="list-group-item"><b>Item:</b> {{order.product}}</li>
+                    <li class="list-group-item"><b>Preço:</b> {{order.price|number_format(2, ',', '')}}</li>
+                    <li class="list-group-item"><b>Moedas:</b> {{order.coins|number_format(0, '', '.')}}</li>
+                    <li class="list-group-item"><b>Pontos:</b> {{order.DragonCoins|number_format(0, '', '.')}}</li>
+                    <li class="list-group-item"><b>ID PagHiper(PIX):</b> {{order.TransactionID}}</li>
+                    <li class="list-group-item"><b>Status:</b>
+                      {% if order.status == 'Pendente' or order.status == 'Em Processamento' %}
+                      <span class="badge badge-warning">{{order.status}}</span>
+                      {% endif %}
+                      {% if order.status == 'Concluído' or order.status == 'Pago' %}
+                      <span class="badge badge-success">{{order.status}}</span>
+                      {% endif %}
+                      {% if order.status == 'Cancelado' or order.status == 'Negado' or order.status == 'Extornado' %}
+                      <span class="badge badge-danger">{{order.status}}</span>
+                      {% endif %}
+                    </li>
+                    <li class="list-group-item"><b>Data:</b> {{order.date|date("d/m/Y")}} às {{order.date|date("H:i:s")}}</li>
+                </ul>
+                {% if order.status != 'Concluído' and order.status != 'Pago' %}
+                <form action="/shop-proccess-orders/manual" method="POST" class="float-right">
+                  <input type="hidden" name="token" value="{{session.token}}">
+                  <input type="hidden" name="displayID" value="{{order.DisplayID}}">
+                  <button class="btn btn-success">Ativar Pedido</button>
+                </form>
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+{% endblock %}
+
+{% block js %}
+<script src="/js/sweetalert2.all.min.js"></script>
+{% endblock %}

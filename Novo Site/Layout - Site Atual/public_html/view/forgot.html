@@ -1,0 +1,65 @@
+{% extends "structure.html" %}
+
+{% block content %}
+<main>
+    <section class="home-content">
+        <div class="container">
+            <div class="content-title">
+                <h1>Recuperar Usuário ou Senha</h1>
+            </div>
+            <div class="content-bg pb-5">
+                <div class="user-forms">
+                    <ul class="nav nav-pills mb-3 border-bottom pb-3 border-secondary" id="pills-tab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Recuperar Senha</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Recuperar Login</button>
+                        </li>
+                        
+                      </ul>
+                      <div class="tab-content" id="pills-tabContent">
+                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                            <form method="POST" action="/forgot-pw" id="form-login">            
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control rounded-0" placeholder="Login" aria-label="Login" required pattern=".{4,16}" name="login">
+                                </div>
+
+                                {% if constant("ENABLE_CAPTCHA") %}
+                                <div class="d-flex justify-content-center pt-1">
+                                    <div id="js-captcha" class="g-recaptcha" data-sitekey="{{constant ('CAPTCHA_PUBLIC_KEY')}}"></div>
+                                </div>
+                                {% endif %}
+                                <input type="hidden" name="token" value="{{session.token}}">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-3">
+                                    <button class="btn btn-primary" type="submit">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                            <form method="POST" action="/forgot-user" id="form-login">            
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control rounded-0" placeholder="E-mail" aria-label="E-mail" required pattern=".{4,16}" name="email">
+                                </div>
+
+                                {% if constant("ENABLE_CAPTCHA") %}
+                                <div class="d-flex justify-content-center pt-1">
+                                    <div id="js-captcha" class="g-recaptcha" data-sitekey="{{constant ('CAPTCHA_PUBLIC_KEY')}}"></div>
+                                </div>
+                                {% endif %}
+                                <input type="hidden" name="token" value="{{session.token}}">
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-3">
+                                    <button class="btn btn-primary" type="submit">Enviar</button>
+                                </div>
+                            </form>
+                        </div>
+                      </div>
+                      
+                </div>
+                  
+
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

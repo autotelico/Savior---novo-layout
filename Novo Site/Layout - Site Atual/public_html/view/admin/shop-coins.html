@@ -1,0 +1,278 @@
+{% extends "admin/structure.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="/css/sweetalert2.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Loja de Moedas</h1> 
+                </div><!-- /.col -->
+                <div class="col-sm-6 d-none">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Starter Page</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <form action="/admin/shop-coins" method="POST">
+                        <div class="card">
+                          <div class="card-header">
+                              <h3 class="card-title">Novo Pacote</h3>
+                              <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                              </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Nome do Pacote" name="item_name" autocomplete="off" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="number" min="1" step="any" class="form-control" placeholder="Quantidade de Moedas" name="coins_amount" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" min="0" step="any" class="form-control" placeholder="Quantidade de Pontos" name="dragon_coins_amount" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" min="1" step="any" class="form-control" placeholder="Preço (R$)" name="price" autocomplete="off">
+                            </div>
+                            <div class="form-group">
+                                <select name="cash_reward" id="cash_reward" class="form-control">
+                                  <option value="0" selected>Cash Premiado..</option>
+                                  {% for reward in listReward %}
+                                  <option value="{{reward.id}}">{{reward.name}}</option>
+                                  {% endfor %}
+                                </select>
+                            </div>  
+                            <div class="form-group">
+                              <input type="text" class="form-control" placeholder="Botão PayPal" name="paypal_btn" autocomplete="off">
+                            </div>
+                            <input type="hidden" name="token" value="{{session.token}}">
+                            <!-- <div class="form-group">
+                                <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
+                                    <input type="checkbox" class="custom-control-input" id="enable-disable">
+                                    <label class="custom-control-label" for="enable-disable">Desativar/Ativar</label>
+                                </div>
+                            </div> -->
+                              
+                          </div>
+                          <div class="card-footer">
+                              <div class="btn-group float-right">
+                                  <button class="btn btn-success"><i class="bi bi-arrow-right"></i> Salvar</button>
+                              </div>
+                          </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <form action="/admin/cash-reward" method="POST">
+                        <div class="card">
+                          <div class="card-header">
+                              <h3 class="card-title">Novo Cash Premiado</h3>
+                              <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                                    <i class="bi bi-dash"></i>
+                                </button>
+                              </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="form-group">
+                                <input type="text" name="name" class="form-control" placeholder="Nome" autocomplete="off" required>
+                            </div>
+                                
+                            <div id="dynamic-inputs">
+                                <div class="form-row mb-2">
+                                    <div class="col">
+                                    <input type="number" class="form-control vnum-input" name="vnum[]" placeholder="Cód. Item" required>
+                                    </div>
+                                    <div class="col">
+                                    <input type="number" class="form-control amount-input" name="amount[]" placeholder="Quantidade" required>
+                                    </div>
+                                    <div class="col-auto">
+                                    <button type="button" class="btn btn-success add-input-btn">+</button>
+                                    </div>
+                                    <div class="col-auto">
+                                    <button type="button" class="btn btn-danger remove-input-btn">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                          </div>
+                          <div class="card-footer">
+                              <div class="btn-group float-right">
+                                  <button class="btn btn-success"><i class="bi bi-arrow-right"></i> Salvar</button>
+                              </div>
+                          </div>
+                        </div>
+                        <input type="hidden" name="token" value="{{session.token}}">
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                      <div class="card-header">
+                        <h3 class="card-title">Pacotes Criados</h3>
+                      </div>
+                      <div class="card-body p-0">
+                        <div class="table-responsive text-center">
+                          <table class="table m-0">
+                            <thead>
+                              <tr>
+                                <th>Pacote</th>
+                                <th>Preço</th>
+                                <th>Moedas</th>
+                                <th>Pontos</th>
+                                <th>Cash Premiado</th>
+                                <th>Visualizações</th>
+                                <th>Opções</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% for item in list %}
+                                <tr>
+                                  <td>{{item.itemName}}</td>
+                                  <td>R$ {{item.price|number_format(2, ',', '.')}}</td>
+                                  <td>{{item.coinsAmount|number_format(0, ',', '.')}}</td>
+                                  <td>{{item.dragonCoinsAmount|number_format(0, ',', '.')}}</td>
+                                  <td>{{item.cashRewardName}}</td>
+                                  <td>{{item.views}}</td>
+                                  <td>
+                                      <form action="/admin/shop-coins/delete" method="POST">
+                                        <input type="hidden" name="token" value="{{session.token}}">
+                                        <input type="hidden" name="item_link" value="{{item.itemLink}}">
+                                        <button class="btn btn-danger btn-sm" title="Apagar"><i class="bi bi-trash"></i></button>
+                                      </form>
+                                  </td>
+                                </tr>
+                              {% endfor %}
+                              <!-- <tr>
+                                <td><a href="#">Pacote 10</a></td>
+                                <td>R$10,00</td>
+                                <td>10.000</td>
+                                <td>1.000</td>
+                                <td>Pacote 10</td>
+                                <td>
+                                  <div class="btn-group">
+                                      <a href="#" class="btn btn-danger btn-sm" title="Apagar"><i class="bi bi-trash"></i></a>
+                                  </div>
+                                </td>
+                              </tr> -->
+                              
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="card-footer text-center">
+                        <a href="#" class="">Ver Mais</a>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                          <h3 class="card-title">Cash Premiado</h3>
+                        </div>
+                        <div class="card-body p-0">
+                          <div class="table-responsive text-center">
+                            <table class="table m-0">
+                              <thead>
+                                <tr>
+                                  <th>Pacote</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                
+                                {% for item in listReward %}
+                                <tr>
+                                  <td>
+                                    <div class="card p-0 collapsed-card m-0">
+                                      <div class="card-header p-1">
+                                        <div class="card-title d-flex">
+                                          <form action="/admin/cash-reward/delete" method="POST">
+                                            <input type="hidden" name="token" value="{{session.token}}">
+                                            <input type="hidden" name="id" value="{{item.id}}">
+                                            <button class="btn btn-danger btn-sm" title="Apagar"><i class="bi bi-trash"></i></button>
+                                          </form>
+                                          <span class="px-1">{{item.name}}</span>
+                                        </div>
+                                        <div class="card-tools ">
+                                          <button type="button" class="btn btn-tool btn-success btn-sm p-0" data-card-widget="collapse">
+                                              <i class="bi bi-plus"></i>
+                                          </button>
+                                        </div>
+                                      </div>
+                                      <div class="card-body">
+                                        <div class="d-flex flex-wrap justify-content-around align-items-center">
+                                          {% for vnum in item.vnum %}
+                                          <div>
+                                            <img src="/icon_shop/{{ iconPath(vnum) }}" alt="" title="{{vnum}}">
+                                            x{{ item.amount[loop.index - 1] }}
+                                            - {{itemName(vnum)}}
+                                          </div>
+                                          {% endfor %}
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </td>
+                                </tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="card-footer text-center">
+                          <a href="#" class="">Ver Mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+
+{% endblock %}
+
+
+{% block js %}
+<script src="/js/sweetalert2.all.min.js"></script>
+<script>
+  $(document).ready(function() {
+      // Adicionar input
+        $(document).on('click', '.add-input-btn', function() {
+            var inputGroup = $(this).closest('.form-row');
+            var newInputGroup = inputGroup.clone();
+            newInputGroup.find('input').val('');
+            inputGroup.after(newInputGroup);
+        });
+
+        // Remover input
+        $(document).on('click', '.remove-input-btn', function() {
+            var inputGroup = $(this).closest('.form-row');
+            if ($('#dynamic-inputs .form-row').length > 1) {
+            inputGroup.remove();
+            }
+        });
+      
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "structure.html" %}
+
+{% block content %}
+<main>
+    <section class="home-content">
+        <div class="container">
+            <div class="content-title">
+                <h1>Login</h1>
+            </div>
+            <div class="content-bg pb-5">
+                <form method="POST" action="/login" id="form-login" class="user-forms">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control rounded-0" placeholder="Username" aria-label="Username" required pattern=".{4,16}" name="login">
+                    </div>
+
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control rounded-0" placeholder="Password" aria-label="Password" required pattern=".{8,16}" name="password">
+                    </div>
+                    <a href="/forgot">Esqueceu o usuário ou senha?</a>
+                    <input type="hidden" name="token" value="{{session.token}}">
+
+                    {% if constant("ENABLE_CAPTCHA") %}
+                    <div class="d-flex justify-content-center pt-1">
+                        <div id="js-captcha" class="g-recaptcha" data-sitekey="{{constant ('CAPTCHA_PUBLIC_KEY')}}"></div>
+                    </div>
+                    {% endif %}
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-3">
+                        <button class="btn btn-primary" type="submit">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

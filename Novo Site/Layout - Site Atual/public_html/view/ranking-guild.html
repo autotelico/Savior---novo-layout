@@ -1,0 +1,69 @@
+{% extends "structure.html" %}
+
+{% block content %}
+<main>
+    <section class="home-content">
+        <div class="container">
+            <div class="content-title">
+                <h1>Ranking de Guildas</h1>
+            </div>
+            <div class="content-bg">
+                <div class="d-flex justify-content-center">
+                    <a href="/player-ranking" class="btn btn-primary mb-3">Ranking de Jogadores</a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col" class="d-none d-md-table-cell">Guilda</th>
+                            <th scope="col">Vitórias</th>
+                            <th scope="col">Derrotas</th>
+                            <th scope="col">Empates</th>
+                            <th scope="col">Reino</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for key, guild in records %}
+                        <tr>
+                            <th scope="row" class="pt-3">{{offset + (key + 1)}}</th>
+                            <td class="d-none d-md-table-cell">{{guild.name}}</td>
+                            <td class="pt-3">{{guild.win}}</td>
+                            <td class="pt-3">{{guild.loss}}</td>
+                            <td class="pt-3">{{guild.draw}}</td>
+                            {% if guild.empire == 1 %}
+                            <td class="text-danger fw-bold pt-3">Shinso</td>
+                            {% endif %}
+                            {% if guild.empire == 2 %}
+                            <td class="text-warning fw-bold pt-3">Chunjo</td>
+                            {% endif %}
+                            {% if guild.empire == 3 %}
+                            <td class="text-primary fw-bold pt-3">Jinno</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center d-none">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination mt-5">
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

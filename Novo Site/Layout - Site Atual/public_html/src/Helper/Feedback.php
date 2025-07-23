@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Helper;
+
+enum Feedback: string 
+{
+    case INVALID_ACHIEVEMENT = "Essa recompensa não está disponível ou já foi coletada.";
+    case INVALID_CUSTOMER_CPF = "O CPF informado não é válido.";
+    case INVALID_CUSTOMER_NAME = "O Nome informado não é válido.";
+    case TICKET_NOT_FOUND = "Ticket não encontrado.";
+    case TICKET_ALREADY_CLOSED = "Esse ticket já foi encerrado.";
+    case TICKET_UPDATED = "Sua mensagem foi adicionada ao chamado.";
+    case TICKET_CREATED = "Seu pedido de suporte foi criado com sucesso.";
+    case SUPPORT_CATEGORY_NOT_FOUND = "Essa categoria não existe ou não está disponível.";
+    case CHARACTER_NOT_FOUND = "O personagem não foi encontrado.";
+    case EMAIL_SENT = "Um E-mail foi enviado contendo as informações necessárias.";
+    case EMAIL_LIMIT_WAIT = "Você não pode solicitar mais e-mails no momento, tente novamente mais tarde.";
+    case ACCOUNT_NOT_FOUND = "Nenhum usuário foi localizado.";
+    case INVALID_PASSWORD = "A senha informada não é válida.";
+    case INVALID_LOGIN = "O login informado não é válido.";
+    case INVALID_EMAIL = "O e-mail informado não é válido.";
+    case INVALID_CHARCODE = "O código do personagem não é válido.";
+    case ACCOUNT_CREATED = "Conta criada com sucesso!";
+    case LOGIN_UNAVAILABLE = "O login escolhido não está disponível.";
+    case EMAIL_UNAVAILABLE = "O e-mail escolhido não está disponível.";
+    case UNKNOWN_ERROR = "Erro desconhecido, se o problema persistir, entre em contato com o suporte.";
+    case INVALID_CAPTCHA = "A verificação do Captcha falhou, tente novamente.";
+    case P2P_ERROR = "Não foi possível conectar ao serviço de P2P.";
+    case LOGIN_SUCCESS = "Você foi logado com sucesso!";
+    case INVALID_LOGIN_OR_PASSWORD = "Login ou Senha inválidos.";
+    case LOGOUT_SUCCESS = "Você foi desconectado com sucesso!";
+    case LOGIN_REQUIRED = "Você precisa estar logado.";
+    case INVALID_TOKEN = "Ops! Atualize a página e tente novamente.";
+    case SUCCESS = "Sucesso!";
+    case PASSWORDS_NOT_MATCH = "A senha digitada não confere.";
+    case EMAILS_NOT_MATCH = "Os e-mails digitados não conferem.";
+    case PASSWORD_CHANGED = "A senha foi alterada!";
+    case EMAIL_CHANGED = "O E-mail foi alterado!";
+    case UNAUTHORIZED_ACCESS = "Acesso Negado.";
+    case INVALID_POST_CATEGORY = "Categoria inválida.";
+    case INVALID_POST_LINK = "Não foi possível gerar o link da postagem.";
+    case INVALID_POST_TITLE = "O título da postagem não é válido.";
+    case INVALID_POST_CONTENT = "O conteúdo da postagem não é válido.";
+    case INVALID_VALUE = "Não foi possível salvar as informações.";
+    case INVALID_LINK = "Link inválido.";
+    case INVALID_POST_IMG = "O link da imagem precisa ser válido.";
+    case POST_SAVED = "A postagem foi salva.";
+    case POST_NOT_FOUND = "A postagem não foi encontrada";
+    case INVALID_SUPPORT_MSG = "A mensagem do ticket não é válida.";
+    case INVALID_SUPPORT_ID = "Não foi possível criar o chamado.";
+    case INVALID_ITEM_NAME = "O nome informado não é válido";
+    case INVALID_COINS_AMOUNT = "Quantidade de moedas inválidas.";
+    case INVALID_PRICE = "Preço inválido.";
+    case ITEM_ALREADY_EXIST = "Já existe um item com o mesmo link cadastrado.";
+    case INVALID_CASH_REWARD = "Quantidade de itens não é válida.";
+    case INVALID_COIN_ID = "O Pacote de Moedas não está disponível.";
+    case UNIQUE_CONSTRAINT_ERROR = "Não foi possível gerar o link, utilize um nome diferente.";
+    case UNIQUE_CONSTRAINT_ERROR_PINCODE = "O Pincode escolhido já está cadastrado.";
+    case INVALID_CATEGORY = "Você precisa informar uma categoria.";
+    case FAILED_TO_CREATE_PRODUCT = "Não foi possível criar o pedido.";
+    case INVALID_PAYMENT_METHOD = "Forma de pagamento indisponível.";
+    case ORDER_CREATED = "Pedido criado com sucesso!";
+    case PURCHASED_SUCCESSFUL = "O item foi comprado com sucesso!";
+    case ITEM_NOT_FOUND = "O item não existe ou não está disponível.";
+    case NOT_ENOUGH_COINS = "Você não possui moedas suficientes para essa compra.";
+    case ITEM_SOLD = "Esse item não possui estoque disponível.";
+    case ALREADY_COMPLETED = "Esse pedido já foi encerrado.";
+    case BUY_LIMIT = "Você atingiu o número máximo de compras para esse item.";
+    case FAILED_TO_CREATE_PIX_INVOICE = "O serviço de pagamentos via pix está indisponível no momento.";
+    case INVALID_TRANSACTION_ID = "transaction_id não confere.";
+    case INVALID_ORDER_ID = "order_id não confere.";
+    case INVALID_ORDER_PRICE = "Valor da transação não confere.";
+    case INVALID_PIN = "O Pincode é inválido ou não está disponível.";
+    case REFERRAL_REWARD_COLLECTED = "As recompensas foram inseridas em sua conta.";
+    case REFERRAL_REWARD_ERROR = "Você não possui recompensas para serem coletadas.";
+}

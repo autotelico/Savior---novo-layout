@@ -1,0 +1,186 @@
+{% extends "structure.html" %}
+
+{% block content %}
+<main>
+    <section class="home-content">
+        <div class="container">
+            <div class="content-title d-flex justify-content-between">
+                <h1>Loja de Moedas</h1>
+            </div>
+            <div class="content-bg">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="pt-1 gap-5 text-start" id="checkout-form">
+                            <div class="mb-3">
+                                <a href="/shop/coin" class="btn btn-sm btn-light">Voltar</a>
+                            </div>
+                            <div style="background-color: #0e0d0d;" class="rounded-3 shadow-lg text-light p-4">
+                                <h2 class="fs-4">Confirme sua compra:</h2>
+                                <hr>
+                                Item do Pedido:
+                                <ul class="mt-2 dot-style">
+                                    <li class="text-warning">{{coin.CoinsAmount|number_format(0, '', '.')}} Moedas Cash<img src="/images/coin-cash.webp" alt="Cash"> </li>
+                                </ul>
+                                <hr>
+                                Preço:
+                                <ul class="mt-2 dot-style">
+                                    <li>R${{coin.price|number_format(2, ',' ,'')}}</li>
+                                </ul>
+                                {% if coin.VnumAndAmount %}
+                                <hr>
+                                Cash Premiado:
+                                <ul class="dot-style">
+                                    {% for key, value in coin.VnumAndAmount %}
+                                    <li><img src='/icon_shop/{{ iconPath(key) }}' alt=''> x{{value|number_format(0, '', '.')}} - {{itemName(key)}}</li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                                {% if coin.DragonCoinsAmount > 0 %}
+                                <hr>
+                                Bônus:
+                                <ul class="dot-style">
+                                    <li class="text-danger"> {{coin.DragonCoinsAmount|number_format(0, '', '.')}} Pontos</li>
+                                </ul>
+                                {% endif %}
+                                <hr>
+                                <div class="alert alert-secondary" role="alert">
+                                    A ativação é automática após confirmação do pagamento.
+                                </div>
+                            </div>
+                            {% if constant("ENABLE_CAPTCHA") %}
+                            <div class="mb-3 d-flex justify-content-center pt-3">
+                                <div class="g-recaptcha" id="captcha" data-sitekey="{{constant ('CAPTCHA_PUBLIC_KEY')}}"></div>
+                            </div>
+                            {% endif %}
+                            <div class="d-flex justify-content-center mt-3 gap-5 flex-wrap">
+                                <!--  -->
+                                {% if coin.getPaypalBtn() != '' %}
+                                <form action="/shop/coin/checkout" method="POST" id="js-paypal">
+                                    <input type="hidden" name="token" value="{{session.token}}">
+                                    <input type="hidden" name="product" value="{{coin.ItemLink}}">
+                                    <input type="hidden" name="paymentMethod" value="paypal">
+                                    <button class="payment-btn rounded-3 position-relative btn btn-primary" >
+                                        {% if bonus.paypal > 0 %}
+                                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                            Bônus {{bonus.paypal}}%
+                                        </span>
+                                        {% endif %}
+                                        <i class="bi bi-paypal"></i>
+                                        <span class="texts">
+                                          <span class="text-1">Pague com</span>
+                                          <span class="text-2">PayPal</span>
+                                        </span>
+                                    </button>
+                                </form>
+                                {% endif %}
+                                <!--  -->
+                                <form action="/shop/coin/checkout" method="POST" id="js-pix">
+                                    <input type="hidden" name="token" value="{{session.token}}">
+                                    <input type="hidden" name="product" value="{{coin.ItemLink}}">
+                                    <input type="hidden" name="paymentMethod" value="pix">
+                                    <button class="payment-btn rounded-3 position-relative btn btn-primary" >
+                                    {% if bonus.pix > 0 %}
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success">
+                                        Bônus {{bonus.pix}}%
+                                    </span>
+                                    {% endif %}
+                                    <i class="bi bi-qr-code-scan"></i>
+                                    <span class="texts">
+                                        <span class="text-1">Pague com</span>
+                                        <span class="text-2">Pix</span>
+                                    </span>
+                                    </button>
+                                </form>
+                                <!-- "" -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        {% include '/my-account-menu.html' %}                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}
+{% block js %}
+<script src="/js/jquery.js"></script>
+{% include '/custom-js.html' %}
+<script>
+    
+    $("#js-paypal").submit((e) => {
+        e.preventDefault()
+        const form = document.getElementById("js-paypal")
+
+        {% if constant("ENABLE_CAPTCHA") %}
+        const captcha = document.getElementById('g-recaptcha-response').value
+        const captchaInput = document.createElement('input')
+        captchaInput.type = 'hidden'
+        captchaInput.name = 'g-recaptcha-response'
+        captchaInput.value = captcha
+        form.appendChild(captchaInput)
+        {% endif %}
+
+        swalLoading()
+        form.submit()
+    })
+
+    $("#js-pix").submit((e) => {
+        e.preventDefault()
+        // const form = new FormData(document.getElementById("js-pix"))
+        const form = document.getElementById("js-pix")
+
+        Swal.fire({
+            title: 'Informações Necessárias',
+            html: `<input type="text" id="name" class="form-control mb-3" placeholder="Nome Completo" autocomplete="off">
+            <input type="text" id="cpf" class="form-control" placeholder="CPF" autocomplete="off">
+            <br>
+            <span class="text-light" style="font-size:12px;"> Seus dados não serão armazenados.</span><br>
+            <span class="text-danger" style="font-size:12px;"> Seus dados precisam ser válidos.</span>`,
+            confirmButtonText: 'Continuar',
+            focusConfirm: false,
+            confirmButtonColor: 'black',
+            preConfirm: () => {
+                const name = Swal.getPopup().querySelector('#name').value
+                const cpf = Swal.getPopup().querySelector('#cpf').value
+
+                {% if constant("ENABLE_CAPTCHA") %}
+                const captcha = document.getElementById('g-recaptcha-response').value
+                {% endif %}
+
+                if (!name || !cpf) {
+                    Swal.showValidationMessage(`Informe seu Nome e CPF`)
+                    return;
+                }
+
+                const nameInput = document.createElement('input')
+                nameInput.type = 'hidden'
+                nameInput.name = 'name'
+                nameInput.value = name
+
+                const cpfInput = document.createElement('input')
+                cpfInput.type = 'hidden'
+                cpfInput.name = 'cpf'
+                cpfInput.value = cpf
+
+                {% if constant("ENABLE_CAPTCHA") %}
+                const captchaInput = document.createElement('input')
+                captchaInput.type = 'hidden'
+                captchaInput.name = 'g-recaptcha-response'
+                captchaInput.value = captcha
+                form.appendChild(captchaInput)
+                {% endif %}
+                
+                form.appendChild(nameInput)
+                form.appendChild(cpfInput)
+                swalLoading()
+                form.submit()
+
+                return false
+            }
+        })
+    });
+</script>
+{% endblock %}

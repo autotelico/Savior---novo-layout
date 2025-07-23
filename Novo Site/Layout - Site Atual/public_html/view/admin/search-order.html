@@ -1,0 +1,77 @@
+{% extends "admin/structure.html" %}
+
+{% block css %}
+{% endblock %}
+
+{% block content %}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Resultado da busca</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6 d-none">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Starter Page</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            {% if order == [] %}
+                <h3>Nenhum pedido foi encontrado.</h3>
+                <br>
+                <a href="/admin/dashboard" class="btn btn-primary">Retornar</a>
+            {% endif %}
+            <div class="bg-dark rounded p-4 mt-3">
+                <table class="table m-0">
+                    <thead>
+                      <tr>
+                        <th>Pedido nº</th>
+                        <th>Item</th>
+                        <th>Status</th>
+                        <th>Conta</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for result in order %}
+                      <tr>
+                        <td><a href="/admin/order/{{result.DisplayID}}">{{result.DisplayID}}</a></td>
+                        <td>{{result.coins|number_format(0, '', '.')}} Cash</td>
+                        <td>
+                          {% if result.status == 'Pendente' or result.status == 'Em Processamento' %}
+                          <span class="badge badge-warning">{{result.status}}</span>
+                          {% endif %}
+                          {% if result.status == 'Concluído' or result.status == 'Pago' %}
+                          <span class="badge badge-success">{{result.status}}</span>
+                          {% endif %}
+                          {% if result.status == 'Cancelado' or result.status == 'Negado' or result.status == 'Extornado' %}
+                          <span class="badge badge-danger">{{result.status}}</span>
+                          {% endif %}
+                        </td>
+                        <td>{{result.login}}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                </table>    
+            </div>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+{% endblock %}
+
+{% block js %}
+{% endblock %}

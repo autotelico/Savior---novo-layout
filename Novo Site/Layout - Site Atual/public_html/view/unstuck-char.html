@@ -1,0 +1,43 @@
+{% extends "structure.html" %}
+
+{% block content %}
+<main>
+    <section class="home-content">
+        <div class="container">
+            <div class="content-title d-flex justify-content-between">
+                <h1>Gerenciar Personagens</h1>
+            </div>
+            <div class="content-bg">
+                <div class="row">
+                    <div class="col-md-9">
+                        <span>Para mover o personagem para a cidade, aguarde 5 minutos após deslogar.</span>
+                        <div class="d-flex flex-column">
+                            {% if characters == [] %}
+                            <span class="text-info p-3">Você ainda não possui personagens.</span>
+                            {% endif %}
+                            {% for character in characters %}
+                            <div class="border m-3 p-3 rounded border-danger d-flex gap-3">
+                                <div>{{character.name}} <span class="text-light">(Lv. {{character.level}})</span></div>
+                                <div>
+                                    <form action="/unstuck-char" method="post">
+                                        <input type="hidden" name="token" value="{{session.token}}">
+                                        <input type="hidden" name="character" value="{{character.name}}">
+                                        <button class="btn btn-danger btn-sm">Mover para Cidade</button>
+                                    </form>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        {% include '/my-account-menu.html' %}                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
+{% block js %}
+{% include '/custom-js.html' %}
+{% endblock %}

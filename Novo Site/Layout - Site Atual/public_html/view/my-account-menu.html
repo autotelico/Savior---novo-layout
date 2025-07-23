@@ -1,0 +1,20 @@
+<ul class="user-menu pb-3 mt-3 mt-md-0">
+    <li class="">Olá, <b>{{session.login}}</b></li>
+    <li class="">Cash: <b class="text-warning">{{user.getCoins|number_format(0, '', '.')}}</b></li>
+    <li><a href="/my-account">Inicio</a></li>
+    <hr>
+    <li class="text-light">Gerenciar Conta:</li>
+    <li><a onclick="return confirmPassword('change-email')" style="color:#be3928; cursor:pointer;">Alterar E-mail</a></li>
+    <li><a onclick="return confirmPassword('change-password')" style="color:#be3928; cursor:pointer;">Alterar Senha</a></li>
+    <li><a onclick="return confirmPassword('warehouse-password')" style="color:#be3928; cursor:pointer;">Senha do Armazém</a></li>
+    <hr>
+    <li class="text-light">Gerenciar Personagens:</li>
+    <li><a href="/unstuck-char">Listar Personagens</a></li>
+    <li><a onclick="return confirmPassword('social-id')" style="color:#be3928; cursor:pointer;">Senha do Personagem</a></li>
+    <hr>
+    <li class="text-light">Loja:</li>
+    <li><a href="/shop/coin">Comprar Cash</a></li>   
+    <li><a href="/shop/orders">Histórico de Compras</a></li>   
+    <hr>
+    <li><a href="/logout">Logout</a></li>
+</ul>   

@@ -1,0 +1,108 @@
+{% extends "structure.html" %}
+
+{% block content %}
+<main>
+    <div class="top-players-home text-center">
+        <h1 class="fw-bold">Top Players</h1>
+        <span class="fw-bold">By Class</span>
+    </div>
+    <section class="top-players-cards">
+        <div class="container">
+            <div class="player-top-class-slide">
+                <div>
+                    <div class="player-card mb-2">
+                        <div class="player-bg-card {% if topClass['warrior']['job'] == 0 %}warrior-m{% else %}warrior-f{% endif %}">
+                            <p class="player-name m-0">{{topClass['warrior']['name'] ?? '-'}}</p>
+                            <p class="player-level m-0">Nível: {{topClass['warrior']['level'] ?? '-'}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="player-card mb-2">
+                        <div class="player-bg-card {% if topClass['assassin']['job'] == 1 %}ninja-f{% else %}ninja-m{% endif %}">
+                            <p class="player-name m-0">{{topClass['assassin']['name'] ?? '-'}}</p>
+                            <p class="player-level m-0">Nível: {{topClass['assassin']['level'] ?? '-'}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="player-card mb-2">
+                        <div class="player-bg-card {% if topClass['sura']['job'] == 2 %}shura-m{% else %}shura-f{% endif %}">
+                            <p class="player-name m-0">{{topClass['sura']['name'] ?? '-'}}</p>
+                            <p class="player-level m-0">Nível: {{topClass['sura']['level'] ?? '-'}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="player-card mb-2">
+                        <div class="player-bg-card {% if topClass['shaman']['job'] == 3 %}shaman-f{% else %}shaman-m{% endif %}">
+                            <p class="player-name m-0">{{topClass['shaman']['name'] ?? '-'}}</p>
+                            <p class="player-level m-0">Nível: {{topClass['shaman']['level'] ?? '-'}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% if constant('USE_LYCAN') %}
+                <div>
+                    <div class="player-card mb-2">
+                        <div class="player-bg-card lycan-m">
+                            <p class="player-name m-0">{{topClass['lycan']['name'] ?? '-'}}</p>
+                            <p class="player-level m-0">Nível: {{topClass['lycan']['level'] ?? '-'}}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    <section class="home-container home-news-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-5 mb-md-0">
+                    <h2 class="fw-bold">Notícias <a href="/posts">+</a></h2>
+                    <ul class="news-home-list">
+                        {% for post in posts %}
+                        <li>
+                            <div class="d-flex gap-1">
+                                <b>[<a href="/post/{{post.getCategory()|lower}}" class="text-light">{{postCategory(post.getCategory())}}</a>]</b>
+                                <a href="/post/{{post.getCategory()|lower}}/{{post.getLink()}}" class="text-light"> {{post.getTitle()}}</a>
+                            </div>
+                            <i>{{post.getDate()|date("d/m/Y")}}</i>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="fw-bold">Eventos <a href="/posts/event">+</a></h2>
+                    <div class="carousel-size">
+                        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                            {% for post in posts %}
+                            {% if post.getCategory() == 'EVENT' %}
+                            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                                <a href="/post/{{post.getCategory()|lower}}/{{post.getLink()}}">
+                                    <img src="{{post.getImgUrl()}}" class="d-block w-100" alt="Slider">
+                                    <div class="carousel-caption p-0">
+                                      <h5 class="m-1">{{post.getTitle}}</h5>
+                                      <p class="m-0"></p>
+                                    </div>
+                                </a>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}
