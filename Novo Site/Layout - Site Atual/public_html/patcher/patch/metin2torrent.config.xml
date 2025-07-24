@@ -1,0 +1,11 @@
+<torrent_config
+   run_path="Metin2Savior.exe"
+   run_path_enable="1"
+   bandwidth_range=""
+   cur_patcher_path="Metin2Savior.exe"
+   new_patcher_path="Metin2Savior.exe"
+   new_patcher_crc32=""
+   new_patcher_url="Metin2Savior.exe">
+        <foreground_patch crcpatch_url="http://metin2savior.com/patcher/patch/" crcversion="0.0.0.1" />
+</torrent_config>
+

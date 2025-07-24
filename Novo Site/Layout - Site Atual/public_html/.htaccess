@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Permite acesso direto a arquivos existentes
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+RewriteRule ^$ public/ [L]
+RewriteRule (.*) public/$1 [L]
+
+# Redireciona requisições para a pasta patcher
+RewriteRule ^$ patcher/ [L]
+RewriteRule (.*) patcher/$1 [L]
