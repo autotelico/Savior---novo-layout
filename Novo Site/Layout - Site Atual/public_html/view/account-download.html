@@ -1,0 +1,17 @@
+
+<div class="home-download-box">
+    <a href="https://drive.google.com/file/d/1NwgcvMvnk43QrlkDIFMusRNLeuw9bVNn">
+        <img class="btn-home-download-box" src="/images/btn-download.webp" alt="">
+    </a>
+    <div class="home-login-box">
+        {% if session.login %}
+        <a href="/my-account" class="btn-home-login-box text-uppercase">Minha Conta</a>
+
+        <span>Bem vindo(a), <a href="/my-account">{{session.login}}</a>! Se desejar sair, faça <a
+                href="/logout">Logout</a> </span>
+        {% else %}
+        <a href="/login" class="btn-home-login-box text-uppercase">Acesse sua conta</a>
+        <span>Você não tem uma conta? <a href="/register">Criar conta!</a></span>
+        {% endif %}
+    </div>
+</div>

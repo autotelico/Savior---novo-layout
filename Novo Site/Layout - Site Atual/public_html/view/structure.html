@@ -22,75 +22,49 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <a class="navbar-brand d-lg-none d-md-block text-uppercase" href="#">
-                    <img src="/images/novo_logo.png" alt="">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-uppercase">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            {% if session.login %}
-                            <a class="nav-link" href="/my-account">Minha Conta</a>
-                            {% else %}
-                            <a class="nav-link" href="/register">Criar Conta</a>
-                            {% endif %}
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                              Rankings
-                            </a>
-                            <ul class="dropdown-menu rounded-0 dropdown-menu-dark" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="/player-ranking">Jogadores</a></li>
-                              <li><a class="dropdown-item" href="/guild-ranking">Guildas</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="https://drive.google.com/file/d/1NwgcvMvnk43QrlkDIFMusRNLeuw9bVNn">Downloads</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/shop/coin">Comprar Cash</a>
-                        </li>
-                        {% if session.login %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">logout</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class="container d-flex justify-content-center justify-content-lg-start">
-            <div class="home-download-box">
-                <a href="https://drive.google.com/file/d/1NwgcvMvnk43QrlkDIFMusRNLeuw9bVNn">
-                    <img class="btn-home-download-box" src="/images/btn-download.webp" alt="">
-                </a>
-                <div class="home-login-box">
-                    {% if session.login %}
-                    <a href="/my-account" class="btn-home-login-box text-uppercase">Minha Conta</a>
-
-                    <span>Bem vindo(a), <a href="/my-account">{{session.login}}</a>! Se desejar sair, faça <a href="/logout">Logout</a> </span>
-                    {% else %}
-                    <a href="/login" class="btn-home-login-box text-uppercase">Acesse sua conta</a>
-                    <span>Você não tem uma conta? <a href="/register">Criar conta!</a></span>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="home-logo-decorator">
-                <img class="logo" src="/images/novo_logo.png" alt="">
-                <img class="decorator-render" src="/images/ranking_race_render_warrior.webp" alt="">
-            </div>
-        </div>
-    </header>
+    <div class="top-panel flex-c-c">
+			<ul class="menu flex-c-c">
+				<li id="home"><a href="/">Home</a></li>
+				<li id="register"><a href="/register">Registration</a></li>
+				<li id="guild-ranking"><a href="/guild-ranking">Guilds</a></li>
+				<li id="player-ranking"><a href="/player-ranking">Players</a></li>
+				<li id="wiki"><a href="">Wiki</a></li>
+			</ul>
+			<div class="top_panel-right flex">
+				<div class="top_panel-soc-block flex-c-c">
+					<a href="" class="fb"></a>
+					<a href="" class="tw"></a>
+					<a href="" class="twch"></a>
+					<a href="" class="yt"></a>
+				</div>
+				<div class="lang-block">
+					<a href="javascript:void(0);" class="main-item"> Language <img class="img-lang"
+							src="images/united-states.png" alt=""></a>
+					<ul class="hidden-block">
+						<li><a href="" class="main-item"> English </a></li>
+						<li><a href="" class="main-item"> German </a></li>
+						<li><a href="" class="main-item"> French </a></li>
+						<li><a href="" class="main-item"> Russian </a></li>
+					</ul>
+				</div><!-- lang-block -->
+			</div>
+		</div><!-- top-panel -->
+		<div class="wrapper">
+			<header class="header">
+				<div class="logo">
+					<a href="/"><img src="images/logo-1.png" alt=""></a>
+				</div>
+				<div class="leaves">
+					<div class="leaves-1"></div>
+					<div class="leaves-2"></div>
+					<div class="leaves-3"></div>
+				</div>
+				<div class="smog">
+					<i class="num1"></i>
+					<i class="num2"></i>
+					<i class="num3"></i>
+				</div>
+			</header><!-- .header-->
     {% block content %}
     {% endblock %}
     <footer>
@@ -259,6 +233,31 @@ integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQI
         window.addEventListener('load', async function() {
             await getPlayersOnline()
         });
+
+        const currentPath = window.location.pathname;;
+        console.log(currentPath);
+        switch (currentPath) {
+            case '/':
+                document.getElementById('home').classList.add('active');
+                break;
+            case '/register':
+                document.getElementById('register').classList.add('active');
+                break;
+            case '/guild-ranking':
+                document.getElementById('guild-ranking').classList.add('active');
+                break;
+            case '/player-ranking':
+                document.getElementById('player-ranking').classList.add('active');
+                break;
+            case '/wiki':
+                document.getElementById('wiki').classList.add('active');
+                break;
+            default:
+                // Do nothing
+                break;
+        }
+        
+
     </script>
 
 

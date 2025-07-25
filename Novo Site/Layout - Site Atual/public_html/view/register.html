@@ -2,140 +2,288 @@
 
 {% block content %}
 <main>
-    <section class="home-content">
-        <div class="container">
-            <div class="content-title">
-                <h1>Nova Conta</h1>
-            </div>
-            <div class="content-bg pb-5">
-                <form onsubmit="return register()" id="js-register-form" class="user-forms">
+	<section class="home-content">
 
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control rounded-0" placeholder="Login" aria-label="Login" required pattern=".{4,16}" name="login">
-                        <span class="input-group-text rounded-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="
-                        - Between 4 and 16 Characters. <br>
-                        - Must start with a letter. <br>
-                        - Allowed only numbers and letters. <br>
-                        ">?</span>
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control rounded-0" placeholder="Password" aria-label="Password" required pattern=".{8,16}" name="password">
-                        <span class="input-group-text rounded-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="
-                        - Between 8 and 16 Characters. <br>
-                        - Must have at least 1 number. <br>
-                        - Must have at least 1 letter. <br>
-                        - Must have at least 1 special character. <br>
-                        - Must have at least 1 uppercase letter . <br>
-                        ">?</span>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control rounded-0" placeholder="Confirm Password" aria-label="Confirm Password" aria-describedby="basic-addon2" required pattern=".{8,16}" name="confirm-password">
-                    </div>
-
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control rounded-0" placeholder="Email" aria-label="Email" required name="email">
-                        <span class="input-group-text rounded-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="
-                        - Must be a valid email. <br>
-                        ">?</span>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="number" class="form-control rounded-0" placeholder="Senha do Personagem" aria-label="Senha do Personagem" required name="char-code">
-                        <span class="input-group-text rounded-0" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" title="
-                        - 7 Números. Ex. 123467 <br>
-                        ">?</span>
-                    </div>
-
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-                        <label class="form-check-label" for="invalidCheck2">
-                            By registering you agree to our <a href="">Terms Of Services</a>. 
-                        </label>
-                    </div>
-                    {% if constant("ENABLE_CAPTCHA") %}
-                    <div class="d-flex justify-content-center pb-3">
-                        <div id="js-captcha" class="g-recaptcha" data-sitekey="{{constant ('CAPTCHA_PUBLIC_KEY')}}"></div>
-                    </div>
-                    {% endif %}
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button class="btn btn-primary" type="submit" id="js-submit-register">Create Account</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
+			<main class="content">
+				<div class="fast-button">
+					<div class="download-block">
+						<a href="download.html"><span>DOWNLOAD</span><br>
+							<p>Game client 1.45Gb</p>
+						</a>
+					</div><!-- DOWNLOAD-block -->
+					<div class="status-block">
+						<div class="server">
+							<div class="flex-s-c">
+								<span class="server-name">SERVER NAME</span> <span class="status-online">Online:</span>
+							</div>
+							<div class="progress-bar">
+								<span style="width: 70%;"></span>
+							</div>
+							<a href="" class="desc">Server Description</a> <span class="status-online">3546</span>
+						</div>
+					</div>
+					<div class="reg-block">
+						<a href="download.html"><span>REGISTRATION</span><br>
+							<p>Join us now!</p>
+						</a>
+					</div><!-- DOWNLOAD-block -->
+				</div>
+				<div class="page-content">
+					<div class="block-widget-widget page-left">
+						<div class="block-players widget-fon"><!--block-TOP PLAYERS-->
+							<div class="block-widget-title">
+								TOP PLAYERS
+							</div>
+							<ul class="top-block">
+								<li class="top-title">
+									<span class="top-number">#</span> <span class="top-flag"></span> <span
+										class="top-name">Name</span> <span class="top-lvl">LvL</span> <span
+										class="top-Res">Res<sup>ML</sup></span>
+								</li>
+								<li class="top-list">
+									<span class="top-number">1.</span> <span class="top-flag"><img
+											src="images/flag-icon.png" alt=""></span> <span class="top-name"><a href=""
+											title="nickname">KINGman</a></span> <span class="top-lvl">150</span> <span
+										class="top-Res">400<sup>398</sup></span>
+								</li>
+								<li class="top-list">
+									<span class="top-number">2.</span> <span class="top-flag"><img
+											src="images/flag-icon.png" alt=""></span> <span class="top-name"><a href=""
+											title="nickname">TOR_GOR</a></span> <span class="top-lvl">150</span> <span
+										class="top-Res">400<sup>398</sup></span>
+								</li>
+								<li class="top-list">
+									<span class="top-number">3.</span> <span class="top-flag"><img
+											src="images/flag-icon.png" alt=""></span> <span class="top-name"><a href=""
+											title="nickname">Very_Long_Nick_Name_Long_Nick</a></span> <span
+										class="top-lvl">150</span> <span class="top-Res">400<sup>398</sup></span>
+								</li>
+								<li class="top-list">
+									<span class="top-number">4.</span> <span class="top-flag"><img
+											src="images/flag-icon.png" alt=""></span> <span class="top-name"><a href=""
+											title="nickname">shushka</a></span> <span class="top-lvl">150</span> <span
+										class="top-Res">400<sup>398</sup></span>
+								</li>
+								<li class="top-list">
+									<span class="top-number">5.</span> <span class="top-flag"><img
+											src="images/flag-icon.png" alt=""></span> <span class="top-name"><a href=""
+											title="nickname">OPapa_2019</a></span> <span class="top-lvl">150</span>
+									<span class="top-Res">400<sup>398</sup></span>
+								</li>
+								<li class="top-list">
+									<span class="top-number">6.</span> <span class="top-flag"><img
+											src="images/flag-icon.png" alt=""></span> <span class="top-name"><a href=""
+											title="nickname">shushka</a></span> <span class="top-lvl">150</span> <span
+										class="top-Res">400<sup>398</sup></span>
+								</li>
+								<li class="top-list">
+									<span class="top-number">7.</span> <span class="top-flag"><img
+											src="images/flag-icon.png" alt=""></span> <span class="top-name"><a href=""
+											title="nickname">OPapa_2019</a></span> <span class="top-lvl">150</span>
+									<span class="top-Res">400<sup>398</sup></span>
+								</li>
+							</ul>
+							<div class="buttons-small">
+								<a href="" class="button-small">more</a>
+							</div>
+						</div><!--block-TOP PLAYERS-->
+						<div class="block-players widget-fon-discussions"><!--block-GUILDS-->
+							<div class="block-widget-title">
+								TOP GUILDS
+							</div>
+							<div class="discussions-content-top">
+								<div class="discussionsContent flex-s-c">
+									<div class="discussionsContent_img">
+										<img src="images/icon_1.jpg" alt="">
+									</div>
+									<div class="discussionsContent_info">
+										<a href="" class="discussionsContent_info-link"
+											title="Welcome to our new site. There are site">Welcome to our new site.
+											There are site</a>
+										<div class="discussionsContent_info-text">
+											By <a href="">Daniel_91</a> | 12.05.2019
+										</div>
+									</div>
+									<div class="discussionsContent_number">
+										<span>1</span>
+									</div>
+								</div>
+								<div class="discussionsContent flex-s-c">
+									<div class="discussionsContent_img">
+										<img src="images/icon_1.jpg" alt="">
+									</div>
+									<div class="discussionsContent_info">
+										<a href="" class="discussionsContent_info-link"
+											title="Welcome to our new site. There are site">Welcome to our new site.
+											There are site</a>
+										<div class="discussionsContent_info-text">
+											By <a href="">Daniel_91</a> | 12.05.2019
+										</div>
+									</div>
+									<div class="discussionsContent_number">
+										<span>1</span>
+									</div>
+								</div>
+								<div class="discussionsContent flex-s-c">
+									<div class="discussionsContent_img">
+										<img src="images/icon_1.jpg" alt="">
+									</div>
+									<div class="discussionsContent_info">
+										<a href="" class="discussionsContent_info-link"
+											title="Welcome to our new site. There are site">Welcome to our new site.
+											There are site</a>
+										<div class="discussionsContent_info-text">
+											By <a href="">Daniel_91</a> | 12.05.2019
+										</div>
+									</div>
+									<div class="discussionsContent_number">
+										<span>1</span>
+									</div>
+								</div>
+								<div class="discussionsContent flex-s-c">
+									<div class="discussionsContent_img">
+										<img src="images/icon_1.jpg" alt="">
+									</div>
+									<div class="discussionsContent_info">
+										<a href="" class="discussionsContent_info-link"
+											title="Welcome to our new site. There are site">Welcome to our new site.
+											There are site</a>
+										<div class="discussionsContent_info-text">
+											By <a href="">Daniel_91</a> | 12.05.2019
+										</div>
+									</div>
+									<div class="discussionsContent_number">
+										<span>1</span>
+									</div>
+								</div>
+								<div class="discussionsContent flex-s-c">
+									<div class="discussionsContent_img">
+										<img src="images/icon_1.jpg" alt="">
+									</div>
+									<div class="discussionsContent_info">
+										<a href="" class="discussionsContent_info-link"
+											title="Welcome to our new site. There are site">Welcome to our new site.
+											There are site</a>
+										<div class="discussionsContent_info-text">
+											By <a href="">Daniel_91</a> | 12.05.2019
+										</div>
+									</div>
+									<div class="discussionsContent_number">
+										<span>1</span>
+									</div>
+								</div>
+							</div>
+							<div class="buttons-small">
+								<a href="" class="button-small">more</a>
+							</div>
+						</div><!--block-GUILDS-->
+						<div class="block-players widget-fon-guilds"><!--block-FAST LINK-->
+							<div class="block-widget-title">
+								FAST LINK
+							</div>
+							<ul class="top-block-block">
+								<li class="top-list-list">
+									<a href="" title="nickname">Item Shop</a>
+								</li>
+								<li class="top-list-list">
+									<a href="" title="nickname">Media Wallpapers</a>
+								</li>
+								<li class="top-list-list">
+									<a href="" title="nickname">Dowload Fiels</a>
+								</li>
+								<li class="top-list-list">
+									<a href="" title="nickname">Forum Community</a>
+								</li>
+								<li class="top-list-list">
+									<a href="" title="nickname">News and Events</a>
+								</li>
+								<li class="top-list-list">
+									<a href="" title="nickname">Guides and Info</a>
+								</li>
+							</ul>
+						</div><!--block-FAST LINK-->
+					</div>
+					<div class="news-top-1 news-top-top"><!--Content text-->
+						<div class="block-widget-title-content">
+							REGISTRATION
+						</div>
+						<form>
+							<p class="input-user"><input type="text" name="login" placeholder="Username"></p>
+							<p class="input-user"><input type="text" name="login" placeholder="Email"></p>
+							<p class="input-user"><input type="password" name="login" placeholder="Password"></p>
+							<p class="input-user"><input type="password" name="login" placeholder="Repeat Password"></p>
+							<div class="buttons">
+								<button class="button-border">SIGN IN</button>
+								<p class="agree"> <input type="checkbox"> I have read and agree to the <a href="">game
+										rules.</a></p>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div class="fast-links"><!--fast-links-->
+					<div class="fast-links-left">
+						<div class="links-left"><span>FORUM</span><br>
+							<p>Welcome to our forum!</p>
+						</div>
+						<div class="fast-links-button-small"><a href="" class="button-small">more</a></div>
+					</div>
+					<span></span>
+					<div class="fast-links-center">
+						<div class="links-left"><span>WIKI</span><br>
+							<p>Welcome to our WIKI!</p>
+						</div>
+						<div class="fast-links-button-small"><a href="" class="button-small">more</a></div>
+					</div>
+					<span></span>
+					<div class="fast-links-right">
+						<div class="links-left"><span>ITEM SHOP</span><br>
+							<p>Welcome to our ITEM SHOP!</p>
+						</div>
+						<div class="fast-links-button-small"><a href="" class="button-small">more</a></div>
+					</div>
+				</div><!--fast-links-->
+			</main><!-- .content -->
+			<footer class="footer">
+				<div class="toTop-fon">
+					<div class="toTop" id="toTop"></div>
+				</div>
+				<div class="footer-block-t">
+					<ul class="f-menu">
+						<li class="active"><a href="">Home</a></li>
+						<li><a href="">Registration</a></li>
+						<li><a href="">players</a></li>
+						<li><a href="">guilds</a></li>
+						<li><a href="">discussions</a></li>
+						<li><a href="">forum</a></li>
+						<li><a href="">About us</a></li>
+					</ul>
+				</div><!-- footer-block-t -->
+				<div class="footer-end">
+					<div class="footer-logo"><a href="/"><img src="images/logo-footer.png" alt=""></a></div>
+					<div class="footer-block-coperite">
+						<span>Copyright 2020 © <a href="/">avalon.com</a></span><br><br>
+						<span class="copyright-text">This site is in no way associated with <br>or endorsed by Webzen
+							Inc.</span>
+					</div>
+				</div>
+			</footer><!-- .footer -->
+		</div><!-- .wrapper -->
+		<!-- Video Modal -->
+		<div id="overlay"></div>
+		<script src="js/jquery-2.1.4.min.js"></script>
+		<script src="js/global.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/slick.min.js"></script>
+		<script>
+			$('.center').slick({
+				infinite: true,
+				centerMode: true,
+				centerPadding: '50px 30px',
+				slidesToShow: 3,
+				slidesToScroll: 3
+			});
+		</script>
+	</section>
 </main>
-{% endblock %}
-{% block js %}
-<script>
-    
-function swalLoading()
-{
-    Swal.fire({
-        title: "Aguarde...",
-        didOpen: () => {
-            Swal.showLoading();
-        },
-    });
-}
-
-function register() 
-{
-    swalLoading()
-    
-    const formElement = document.getElementById("js-register-form")
-    const formData = new FormData(formElement)
-    const btnSubmit = document.getElementById("js-submit-register")
-    const captchaElement = document.getElementById("js-captcha")
-
-    btnSubmit.setAttribute('disabled', 'disabled')
-
-    fetch('/register', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success === true) { 
-            Swal.fire({
-                title: 'Sucesso!',
-                icon: 'success',
-                text: data.msg,
-                color: '#fff',
-                confirmButtonColor: '#b71f1f'
-            })
-            formElement.reset()
-        }
-
-        if (data.success === false) {
-            Swal.fire({
-                title: 'Ops!',
-                icon: 'error',
-                text: data.msg,
-                color: '#fff',
-                confirmButtonColor: '#b71f1f'
-            })
-        }
-    })
-    // .catch(error => {
-    //     Swal.fire({
-    //         title: 'Ops!',
-    //         icon: 'error',
-    //         text: "Atualize a página e tente novamente.",
-    //         color: '#fff',
-    //         confirmButtonColor: '#b71f1f'
-    //     })
-    //     console.log(error)
-    // })
-    .finally(() => {
-        if (captchaElement) {
-            grecaptcha.reset();
-        }
-    
-        btnSubmit.removeAttribute('disabled')
-    })
-
-    return false
-}
-</script>
 {% endblock %}

@@ -63,101 +63,53 @@ integrity=\"sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQ
 </head>
 
 <body>
-    <header>
-        <nav class=\"navbar navbar-expand-lg navbar-dark\">
-            <div class=\"container\">
-                <a class=\"navbar-brand d-lg-none d-md-block text-uppercase\" href=\"#\">
-                    <img src=\"/images/novo_logo.png\" alt=\"\">
-                </a>
-                <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\"
-                    data-bs-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\"
-                    aria-label=\"Toggle navigation\">
-                    <span class=\"navbar-toggler-icon\"></span>
-                </button>
-                <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
-                    <ul class=\"navbar-nav me-auto mb-2 mb-lg-0 text-uppercase\">
-                        <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"/\">Inicio</a>
-                        </li>
-                        <li class=\"nav-item\">
-                            ";
-        // line 42
-        if (twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", false, false, false, 42)) {
-            // line 43
-            echo "                            <a class=\"nav-link\" href=\"/my-account\">Minha Conta</a>
-                            ";
-        } else {
-            // line 45
-            echo "                            <a class=\"nav-link\" href=\"/register\">Criar Conta</a>
-                            ";
-        }
-        // line 47
-        echo "                        </li>
-                        <li class=\"nav-item dropdown\">
-                            <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-                              Rankings
-                            </a>
-                            <ul class=\"dropdown-menu rounded-0 dropdown-menu-dark\" aria-labelledby=\"navbarDropdown\">
-                              <li><a class=\"dropdown-item\" href=\"/player-ranking\">Jogadores</a></li>
-                              <li><a class=\"dropdown-item\" href=\"/guild-ranking\">Guildas</a></li>
-                            </ul>
-                        </li>
-                        <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"https://drive.google.com/file/d/1NwgcvMvnk43QrlkDIFMusRNLeuw9bVNn\">Downloads</a>
-                        </li>
-                        <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"/shop/coin\">Comprar Cash</a>
-                        </li>
-                        ";
-        // line 63
-        if (twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", false, false, false, 63)) {
-            // line 64
-            echo "                        <li class=\"nav-item\">
-                            <a class=\"nav-link\" href=\"/logout\">logout</a>
-                        </li>
-                        ";
-        }
-        // line 68
-        echo "                    </ul>
-                </div>
-            </div>
-        </nav>
-        <div class=\"container d-flex justify-content-center justify-content-lg-start\">
-            <div class=\"home-download-box\">
-                <a href=\"https://drive.google.com/file/d/1NwgcvMvnk43QrlkDIFMusRNLeuw9bVNn\">
-                    <img class=\"btn-home-download-box\" src=\"/images/btn-download.webp\" alt=\"\">
-                </a>
-                <div class=\"home-login-box\">
-                    ";
-        // line 78
-        if (twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", false, false, false, 78)) {
-            // line 79
-            echo "                    <a href=\"/my-account\" class=\"btn-home-login-box text-uppercase\">Minha Conta</a>
-
-                    <span>Bem vindo(a), <a href=\"/my-account\">";
-            // line 81
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["session"] ?? null), "login", [], "any", false, false, false, 81), "html", null, true);
-            echo "</a>! Se desejar sair, faça <a href=\"/logout\">Logout</a> </span>
-                    ";
-        } else {
-            // line 83
-            echo "                    <a href=\"/login\" class=\"btn-home-login-box text-uppercase\">Acesse sua conta</a>
-                    <span>Você não tem uma conta? <a href=\"/register\">Criar conta!</a></span>
-                    ";
-        }
-        // line 86
-        echo "                </div>
-            </div>
-            <div class=\"home-logo-decorator\">
-                <img class=\"logo\" src=\"/images/novo_logo.png\" alt=\"\">
-                <img class=\"decorator-render\" src=\"/images/ranking_race_render_warrior.webp\" alt=\"\">
-            </div>
-        </div>
-    </header>
+    <div class=\"top-panel flex-c-c\">
+\t\t\t<ul class=\"menu flex-c-c\">
+\t\t\t\t<li id=\"home\"><a href=\"/\">Home</a></li>
+\t\t\t\t<li id=\"register\"><a href=\"/register\">Registration</a></li>
+\t\t\t\t<li id=\"guild-ranking\"><a href=\"/guild-ranking\">Guilds</a></li>
+\t\t\t\t<li id=\"player-ranking\"><a href=\"/player-ranking\">Players</a></li>
+\t\t\t\t<li id=\"wiki\"><a href=\"\">Wiki</a></li>
+\t\t\t</ul>
+\t\t\t<div class=\"top_panel-right flex\">
+\t\t\t\t<div class=\"top_panel-soc-block flex-c-c\">
+\t\t\t\t\t<a href=\"\" class=\"fb\"></a>
+\t\t\t\t\t<a href=\"\" class=\"tw\"></a>
+\t\t\t\t\t<a href=\"\" class=\"twch\"></a>
+\t\t\t\t\t<a href=\"\" class=\"yt\"></a>
+\t\t\t\t</div>
+\t\t\t\t<div class=\"lang-block\">
+\t\t\t\t\t<a href=\"javascript:void(0);\" class=\"main-item\"> Language <img class=\"img-lang\"
+\t\t\t\t\t\t\tsrc=\"images/united-states.png\" alt=\"\"></a>
+\t\t\t\t\t<ul class=\"hidden-block\">
+\t\t\t\t\t\t<li><a href=\"\" class=\"main-item\"> English </a></li>
+\t\t\t\t\t\t<li><a href=\"\" class=\"main-item\"> German </a></li>
+\t\t\t\t\t\t<li><a href=\"\" class=\"main-item\"> French </a></li>
+\t\t\t\t\t\t<li><a href=\"\" class=\"main-item\"> Russian </a></li>
+\t\t\t\t\t</ul>
+\t\t\t\t</div><!-- lang-block -->
+\t\t\t</div>
+\t\t</div><!-- top-panel -->
+\t\t<div class=\"wrapper\">
+\t\t\t<header class=\"header\">
+\t\t\t\t<div class=\"logo\">
+\t\t\t\t\t<a href=\"/\"><img src=\"images/logo-1.png\" alt=\"\"></a>
+\t\t\t\t</div>
+\t\t\t\t<div class=\"leaves\">
+\t\t\t\t\t<div class=\"leaves-1\"></div>
+\t\t\t\t\t<div class=\"leaves-2\"></div>
+\t\t\t\t\t<div class=\"leaves-3\"></div>
+\t\t\t\t</div>
+\t\t\t\t<div class=\"smog\">
+\t\t\t\t\t<i class=\"num1\"></i>
+\t\t\t\t\t<i class=\"num2\"></i>
+\t\t\t\t\t<i class=\"num3\"></i>
+\t\t\t\t</div>
+\t\t\t</header><!-- .header-->
     ";
-        // line 94
+        // line 68
         $this->displayBlock('content', $context, $blocks);
-        // line 96
+        // line 70
         echo "    <footer>
         <div class=\"home-container home-footer-bg\">
             <div class=\"container\">
@@ -211,9 +163,9 @@ integrity=\"sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQ
     <script src=\"/js/jquery.js\"></script>
     <script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script>
     ";
-        // line 148
+        // line 122
         $this->displayBlock('js', $context, $blocks);
-        // line 151
+        // line 125
         echo "    <script>
         var slider = tns(
         {
@@ -244,7 +196,7 @@ integrity=\"sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQ
                 },
                 \"1200\": {
                 \"items\": ";
-        // line 180
+        // line 154
         echo twig_escape_filter($this->env, twig_length_filter($this->env, ($context["topClass"] ?? null)), "html", null, true);
         echo ",
                 \"edgePadding\": 0,
@@ -328,6 +280,31 @@ integrity=\"sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQ
         window.addEventListener('load', async function() {
             await getPlayersOnline()
         });
+
+        const currentPath = window.location.pathname;;
+        console.log(currentPath);
+        switch (currentPath) {
+            case '/':
+                document.getElementById('home').classList.add('active');
+                break;
+            case '/register':
+                document.getElementById('register').classList.add('active');
+                break;
+            case '/guild-ranking':
+                document.getElementById('guild-ranking').classList.add('active');
+                break;
+            case '/player-ranking':
+                document.getElementById('player-ranking').classList.add('active');
+                break;
+            case '/wiki':
+                document.getElementById('wiki').classList.add('active');
+                break;
+            default:
+                // Do nothing
+                break;
+        }
+        
+
     </script>
 
 
@@ -338,19 +315,19 @@ integrity=\"sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQ
 </html>";
     }
 
-    // line 94
+    // line 68
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 95
+        // line 69
         echo "    ";
     }
 
-    // line 148
+    // line 122
     public function block_js($context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 149
+        // line 123
         echo "    
     ";
     }
@@ -367,7 +344,7 @@ integrity=\"sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQ
 
     public function getDebugInfo()
     {
-        return array (  354 => 149,  350 => 148,  346 => 95,  342 => 94,  248 => 180,  217 => 151,  215 => 148,  161 => 96,  159 => 94,  149 => 86,  144 => 83,  139 => 81,  135 => 79,  133 => 78,  121 => 68,  115 => 64,  113 => 63,  95 => 47,  91 => 45,  87 => 43,  85 => 42,  61 => 21,  39 => 1,);
+        return array (  331 => 123,  327 => 122,  323 => 69,  319 => 68,  200 => 154,  169 => 125,  167 => 122,  113 => 70,  111 => 68,  61 => 21,  39 => 1,);
     }
 
     public function getSourceContext()
